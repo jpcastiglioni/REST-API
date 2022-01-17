@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
-// const bodyParser = require('body-parser');
 require('dotenv/config');
 
 const app = express();
@@ -19,6 +18,9 @@ app.use(express.json());
 const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
 
+const authRoute = require('./routes/auth');
+app.use('/api/user', authRoute);
+
 
 
 
@@ -34,4 +36,4 @@ mongoose.connect(process.env.DB_CONNECTION, () => {
 });
 
 //START LISTEINGN TO THE SERVER
-app.listen(3000);
+app.listen(3000, () => console.log('Server running at 3000'));
